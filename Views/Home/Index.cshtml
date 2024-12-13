@@ -1,0 +1,60 @@
+﻿@model exercice_ado.DisplayModel.EtudiantDisplayModel
+
+<h1>Liste des Étudiants</h1>
+
+<form asp-action="FilterByClass" method="get">
+    <label for="numberClass">Numéro de Classe :</label>
+    <input type="number" id="numberClass" name="numberClass" />
+    <button type="submit">Filtrer</button>
+</form>
+
+<h2>Ajouter un Étudiant</h2>
+<form asp-action="Create" method="post">
+    <div>
+        <label for="Name">Nom :</label>
+        <input type="text" id="Name" name="Name" value="@Model.Name" required />
+    </div>
+    <div>
+        <label for="Firstname">Prénom :</label>
+        <input type="text" id="Firstname" name="Firstname" value="@Model.Firstname" required />
+    </div>
+    <div>
+        <label for="NumberClass">Numéro de Classe :</label>
+        <input type="number" id="NumberClass" name="NumberClass" value="@Model.NumberClass" required />
+    </div>
+    <div>
+        <label for="DateDiplome">Date de Diplôme :</label>
+        <input type="date" id="DateDiplome" name="DateDiplome" value="@Model.DateDiplome?.ToString("yyyy-MM-dd")" />
+    </div>
+    <button type="submit">Ajouter</button>
+</form>
+
+<h2>Liste des Étudiants</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Numéro de Classe</th>
+            <th>Date de Diplôme</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var etudiant in Model.Etudiants)
+        {
+            <tr>
+                <td>@etudiant.Name</td>
+                <td>@etudiant.Firstname</td>
+                <td>@etudiant.NumberClass</td>
+                <td>@etudiant.DateDiplome?.ToString("dd/MM/yyyy")</td>
+                <td>
+                    <form asp-action="Delete" method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="@etudiant.Primarikey" />
+                        <button type="submit">Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
