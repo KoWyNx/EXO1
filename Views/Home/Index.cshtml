@@ -32,29 +32,31 @@
 <h2>Liste des Étudiants</h2>
 <table>
     <thead>
-        <tr>
-            <th>Nom</th>
-            <th>Prénom</th>
-            <th>Numéro de Classe</th>
-            <th>Date de Diplôme</th>
-            <th>Actions</th>
-        </tr>
+    <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Numéro de Classe</th>
+        <th>Date de Diplôme</th>
+        <th>Actions</th>
+    </tr>
     </thead>
     <tbody>
-        @foreach (var etudiant in Model.Etudiants)
-        {
-            <tr>
-                <td>@etudiant.Name</td>
-                <td>@etudiant.Firstname</td>
-                <td>@etudiant.NumberClass</td>
-                <td>@etudiant.DateDiplome?.ToString("dd/MM/yyyy")</td>
-                <td>
-                    <form asp-action="Delete" method="post" style="display:inline;">
-                        <input type="hidden" name="id" value="@etudiant.Primarikey" />
-                        <button type="submit">Supprimer</button>
-                    </form>
-                </td>
-            </tr>
-        }
+    @foreach (var etudiant in Model.Etudiants)
+    {
+        <tr>
+            <td>@etudiant.Name</td>
+            <td>@etudiant.Firstname</td>
+            <td>@etudiant.NumberClass</td>
+            <td>@etudiant.DateDiplome?.ToString("dd/MM/yyyy")</td>
+            <td>
+                <form asp-action="Delete" method="post" style="display:inline;">
+                    <input type="hidden" name="id" value="@etudiant.Primarikey" />
+                    <button type="submit">Supprimer</button>
+                </form>
+                <a href="@Url.Action("Edit", "Home", new { id = etudiant.Primarikey })">Modifier</a>
+            </td>
+        </tr>
+    }
     </tbody>
 </table>
+

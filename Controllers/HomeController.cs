@@ -62,6 +62,54 @@ public class HomeController : Controller
         return View("Index");
     }
 
+    public IActionResult Edit(Guid id)
+    {
+        var etudiant = _context.Etudiants.FirstOrDefault(e => e.Primarikey == id);
+        if (etudiant == null)
+        {
+            return NotFound();
+        }
+
+        var model = new EtudiantDisplayModel
+        {
+            Primarikey = etudiant.Primarikey,
+            Name = etudiant.Name,
+            Firstname = etudiant.Firstname,
+            NumberClass = etudiant.NumberClass,
+            DateDiplome = etudiant.DateDiplome
+        };
+
+        return View(model);
+    }
+
+    [HttpPost]
+    public IActionResult Update(EtudiantDisplayModel model)
+    {
+        if (ModelState.IsValid)
+        {
+            var etudiant = _context.Etudiants.FirstOrDefault(e => e.Primarikey == model.Primarikey);
+            if (etudiant != null)
+            {
+                etudiant.Name = model.Name;
+                etudiant.Firstname = model.Firstname;
+                etudiant.NumberClass = model.NumberClass;
+                etudiant.DateDiplome = model.DateDiplome;
+
+                _context.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError(string.Empty, "L'étudiant spécifié est introuvable.");
+        }
+
+        return View("Index", new EtudiantDisplayModel
+        {
+            Etudiants = _context.Etudiants.ToList()
+        });
+    }
+
+
     [HttpPost]
     public IActionResult Delete(Guid id)
     {

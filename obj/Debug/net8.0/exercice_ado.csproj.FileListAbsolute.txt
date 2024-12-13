@@ -168,3 +168,4 @@
 /Users/Fares/Desktop/Dev/exercice_ado/obj/Debug/net8.0/exercice_ado.pdb
 /Users/Fares/Desktop/Dev/exercice_ado/obj/Debug/net8.0/exercice_ado.genruntimeconfig.cache
 /Users/Fares/Desktop/Dev/exercice_ado/obj/Debug/net8.0/ref/exercice_ado.dll
+/Users/Fares/Desktop/Dev/exercice_ado/obj/Debug/net8.0/exercice_ado.sourcelink.json

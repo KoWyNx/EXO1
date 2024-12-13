@@ -1,0 +1,25 @@
+@model exercice_ado.DisplayModel.EtudiantDisplayModel
+
+<h1>Modifier un Étudiant</h1>
+
+<form asp-action="Update" method="post">
+    <input type="hidden" name="Primarikey" value="@Model.Primarikey" />
+    
+    <div>
+        <label for="Name">Nom :</label>
+        <input type="text" id="Name" name="Name" value="@Model.Name" required />
+    </div>
+    <div>
+        <label for="Firstname">Prénom :</label>
+        <input type="text" id="Firstname" name="Firstname" value="@Model.Firstname" required />
+    </div>
+    <div>
+        <label for="NumberClass">Numéro de Classe :</label>
+        <input type="number" id="NumberClass" name="NumberClass" value="@Model.NumberClass" required />
+    </div>
+    <div>
+        <label for="DateDiplome">Date de Diplôme :</label>
+        <input type="date" id="DateDiplome" name="DateDiplome" value="@Model.DateDiplome?.ToString("yyyy-MM-dd")" />
+    </div>
+    <button type="submit">Mettre à jour</button>
+</form>

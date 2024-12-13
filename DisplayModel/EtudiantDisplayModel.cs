@@ -7,6 +7,7 @@ namespace exercice_ado.DisplayModel;
 public class EtudiantDisplayModel
 {
     public List<Etudiant> Etudiants { get; set; }  
+    public Guid Primarikey { get; set; }
     public string? Name { get; set; }
     public string? Firstname { get; set; }
     public int? NumberClass { get; set; }
@@ -16,6 +17,8 @@ public class EtudiantDisplayModel
     {
         Etudiants = new List<Etudiant>();
     }
+    
+    
     
     
 }
